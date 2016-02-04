@@ -1,7 +1,10 @@
 var connect = require('connect');
 var url = require('url');
 var serveStatic = require('serve-static');
+var fs = require('fs');
+var path = require('path');
 
+var jade = require('./lib/processor/jade');
 
 
 function miniHarp(root){

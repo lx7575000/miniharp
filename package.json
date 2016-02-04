@@ -9,9 +9,15 @@
   "author": "lx7575000 <liu_narcisus@163.com> (https://github.com/lx7575000)",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^3.5.0",
     "connect": "^3.4.1",
+    "fs": "0.0.2",
+    "jade": "^1.11.0",
     "minimist": "^1.2.0",
+    "mocha": "^2.4.5",
+    "path": "^0.12.7",
     "serve-static": "^1.10.2",
+    "supertest": "^1.1.0",
     "url": "^0.11.0"
   }
 }
