@@ -5,21 +5,28 @@ var fs = require('fs');
 var path = require('path');
 
 var askJade = require('./lib/processor/jade');
-
+var makeLess = require('./lib/processor/less');
 
 function miniHarp(root){
   var app = connect();
   app.use(function(req, res, next){
-    if(req.url === '/current-time'){
-      var date = (new Date()).toISOString();
-      console.log(date);
-      res.end(date);
+    if(url.parse(req.url).path === '/'){
+      req.url += 'index.html';
     }
-    console.log('middleware...1');
+    next();
+  })
+  .use(function(req, res, next) {
+    var extname = path.extname(req.url);
+    if(extname === '.jade' || extname === '.less'){
+      res.statusCode = 404;
+      res.end('Not Found ' + req.url);
+    }
     next();
   })
   .use(askJade(root))
+  .use(makeLess(root))
   .use(serveStatic(root));
+
 
   return app;
 }
