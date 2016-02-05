@@ -4,7 +4,7 @@ var serveStatic = require('serve-static');
 var fs = require('fs');
 var path = require('path');
 
-var jade = require('./lib/processor/jade');
+var askJade = require('./lib/processor/jade');
 
 
 function miniHarp(root){
@@ -15,11 +15,12 @@ function miniHarp(root){
       console.log(date);
       res.end(date);
     }
-    console.log('middleware...');
+    console.log('middleware...1');
     next();
   })
-  .use(serveStatic(__dirname + '/'));
-  console.log('start miniharp....');
+  .use(askJade(root))
+  .use(serveStatic(root));
+
   return app;
 }
 
